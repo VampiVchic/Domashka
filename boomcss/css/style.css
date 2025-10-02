@@ -1,0 +1,64 @@
+.style-1,
+.style-2,
+.style-3,
+.style-4,
+.style-5 {
+    font-family: "Open Sans";
+}
+
+.style-1 {
+    font-size: 20px;
+    font-style: italic;
+    line-height: 30px;
+    /* я знаю что жирность надо брать 300,
+    но у меня тогда ставится не как на примере,
+    у меня выходит жирнее поэтому подгоню чуть под пример
+    некоторые команды у меня почему то не работали,
+    пришлось гуглить, а качал я именно курсив 300 жирности*/
+    font-weight: 100;
+}
+
+.style-2 {
+    font-family: sans-serif;
+    text-decoration: line-through;
+    text-align: left;
+
+}
+
+.style-3 {
+    font-family: serif;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.style-4 {
+    word-spacing: 30px;
+    color: #000000;
+    text-decoration: overline wavy;
+    text-shadow: 1px 1px 1px #690b74
+}
+
+.style-5 {
+    letter-spacing: 5px;
+    text-decoration: double underline;
+}
+
+.ps {
+    font-family: "Open Sans";
+    font-size: 20 px;
+    line-height: 20px;
+    font-weight: 300px;
+    text-shadow: 1px 1px 1px #bd8d8d;
+    text-decoration: underline wavy;
+    word-spacing: 5px;
+    text-align: center;
+}
+#super  {
+    background-color: #fbff00;
+    color: #0462f0;
+}
+#thx {
+    text-transform: uppercase;
+    color: #08ff31;
+    background-color: #0011ff;
+}
