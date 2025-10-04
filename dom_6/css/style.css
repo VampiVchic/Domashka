@@ -1,0 +1,85 @@
+/* ====================================================== */
+
+/* .block {
+    /* width: 1000px; */
+/* height: 100px; */
+/* background: #e4e4e4;
+
+    max-width: 1000px;
+    min-width: 800px;
+
+    min-height: 100px;
+    max-height: 1000px;
+} * */
+/* .block
+{
+    margin: 0 0 50px 0;
+}
+
+.inline {
+    margin-top: 100px;
+}
+
+.inline-2 {
+    
+}
+.img {
+    width: 1000px;
+} */
+/* .block {
+    /* border: 10px groove #4b8aff; */
+/* border: 20px dashed #000; */
+/* border-radius: 10px; */
+/* border-top-right-radius: 1000px; */
+/* border-radius: 100px 20px 50px 30px; */
+/* outline: 10px groove #cf0808; */
+
+/* .inline {
+    /* border: 10px groove #4b8aff; */
+
+/* ================================================================================= */
+
+/* .block {
+    box-shadow:inset 10px 16px 20px #7c0202;
+    border-radius: 20px;
+} */
+/* ================================================================================== */
+/* .block {
+    display: inline-block;
+    width: 300px;
+    background-color: aquamarine;
+}
+.inline-2, .inline {
+    display: none;
+}
+.img {
+    
+} */
+/* ================================================================================== */
+/* .block {
+    opacity: 1 ;
+    visibility: hidden;
+    overflow: auto;
+}  */
+/* ========================== Это я оставил себе вдруг пригодиться в работе на дз ============================== */
+.boom {
+    border: 1px solid #000000;
+    border-radius: 20px 0 0 20px;
+    overflow: auto;
+    height: 400px;
+    width: 1000px;
+    background-color: #afa2d4;
+}
+
+.block {
+    display: inline-block;
+    border: 0px solid #e08208;
+    border-radius: 20px 20px;
+    box-shadow: inset 3px 3px 22px -7px #8f7554;
+    height: 165px;
+    width: 194px;
+    padding: 1px 20px;
+    margin: 5px;
+    background-color: #25e5c1;
+    box-sizing: border-box;
+}
