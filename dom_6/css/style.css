@@ -77,9 +77,10 @@
     border-radius: 20px 20px;
     box-shadow: inset 3px 3px 22px -7px #8f7554;
     height: 165px;
-    width: 194px;
+    max-width: 194px;
     padding: 1px 20px;
     margin: 5px;
     background-color: #25e5c1;
     box-sizing: border-box;
+
 }
