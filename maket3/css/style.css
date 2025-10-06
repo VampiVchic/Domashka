@@ -49,7 +49,7 @@ body {
 .hero {
     padding: 120px;
     /* у меня монитор в 2к, ничего же страшного? */
-    background: url("logo/hero-bg.jpg") 20% 50% / cover no-repeat;
+    background: url("../logo/hero-bg.jpg") 20% 50% / cover no-repeat;
 }
 
 .hero-title {
@@ -234,3 +234,4 @@ body {
     margin-bottom: 10px;
 
 }
+
