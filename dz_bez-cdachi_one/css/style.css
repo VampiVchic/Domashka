@@ -14,7 +14,7 @@ body {
     position: fixed;
     min-width: 700px;
     min-height: 100px;
-    background-color: #c8c8c8;
+    background-color: rgb(200, 200, 200);
     border: 2px solid black;
     left: 50%;
     border-radius: 5%;
@@ -24,14 +24,13 @@ body {
 }
 
 .block-circle {
-    position: absolute;
-    display: flex;
+    position: fixed;
     min-width: 100px;
     min-height: 100px;
     max-width: 100px;
     max-height: 100px;
-    background-color: #ff0000;
+    background-color: rgb(255, 0, 0);
     border-radius: 50%;
-    left: 10%;
-    bottom: 30%;
+    left: 55%;
+    bottom: 11%;
 }
