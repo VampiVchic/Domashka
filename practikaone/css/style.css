@@ -363,6 +363,7 @@ html {
 
     .hero__img-control--mobile {
         display: flex;
+        justify-content: center;
         margin: 0 0 30px;
         max-width: 100%;
     }
@@ -374,6 +375,8 @@ html {
     .hero__title {
         font-size: 12vw;
     }
-
-
+    .hero__img-control--mobile {
+        justify-content: center;
+    }
 }
+
