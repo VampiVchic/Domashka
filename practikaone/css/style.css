@@ -672,52 +672,43 @@
 
 /* ================================================ */
 
-/* Общий контейнер с фоном */
+
 .main__bottom {
     position: relative;
     max-width: 100%;
     max-height: auto;
     background: url('../img/decor/bg-footer.png') 50% 100% / cover no-repeat;
-    /* Это могут быть только внутренние отступы, не влияет на фон */
-    overflow: hidden;
-    /* если есть дублирование, это поможет */
 }
 
-/* Сетка для двух колонок */
 .main__bottom-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 84px;
-    align-items: center;
-    justify-content: center;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 50px 0 140px;
 }
 
-/* Левая колонка: изображение тортика */
-.cake-image img {
+.main__cake-image img {
     width: 100%;
     display: block;
-    margin-top: 20px
+    margin-top: 88px;
 }
 
-/* Правая колонка: текст и форма */
-.form-section {
+.main__form {
     max-width: 420px;
-    /* или немного больше, чтобы поля поместились */
     margin: 0 auto;
 }
 
-
-/* Текст под заголовком */
 .cake__text {
-    max-width: 360px;
-    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 20px 0 40px 0;
 }
 
-/* Поля формы */
-.bottom_field {
+.bottom-field {
     border: 1px solid #ac907a;
     border-radius: 100px;
     padding: 19px 28px;
@@ -725,61 +716,75 @@
     height: 62px;
     margin-bottom: 10px;
     color: #AC907A;
-    background-color: #ffffff00;
+    background-color: transparent;
     font-size: 17px;
 }
 
-.bottom_field:hover {
+.bottom-field:hover {
     border-color: var(--accent-color);
 }
 
-.cake__nomber {
+.cake__checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: 2px solid #312c27b3;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
     margin-right: 10px;
 }
 
-/* Контейнер для чекбокса и подписи */
-.checkbox-container {
+.cake__checkbox:hover {
+    background-color: #FFA55C;
+}
+
+.cake__checkbox:checked {
+    background-color: #FFA55C;
+    border-color: #FFA55C;
+}
+
+.cake__checkbox:checked::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.checkbox__container {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.cake__ckeck {
+.checkbox__text {
     font-weight: 400;
     font-size: 13px;
     line-height: 1.5;
     color: #312c27;
 }
 
-.cake__ckeck a {
+.checkbox__text a {
     text-decoration: underline;
 }
 
-.berries {
+.main__berries {
     position: relative;
     left: 376px;
     top: 115px;
 }
 
-.berries-2 {
+.main__berries2 {
     position: relative;
     left: 1530px;
     top: -610px;
 }
-
-
-/* Дополнительные пресеты для адаптивности (опционально) */
-@media(max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-
-    .main__bottom {
-        padding: 20px 10px;
-    }
-}
-
-
 
 
 
