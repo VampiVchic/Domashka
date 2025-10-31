@@ -671,6 +671,146 @@
 
 
 /* ================================================ */
+
+/* Общий контейнер с фоном */
+.main__bottom {
+    position: relative;
+    max-width: 100%;
+    max-height: auto;
+    background: url('../img/decor/bg-footer.png') 50% 100% / cover no-repeat;
+    /* Это могут быть только внутренние отступы, не влияет на фон */
+    overflow: hidden;
+    /* если есть дублирование, это поможет */
+}
+
+/* Сетка для двух колонок */
+.main__bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 84px;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0 140px;
+}
+
+/* Левая колонка: изображение тортика */
+.cake-image img {
+    width: 100%;
+    display: block;
+    margin-top: 20px
+}
+
+/* Правая колонка: текст и форма */
+.form-section {
+    max-width: 420px;
+    /* или немного больше, чтобы поля поместились */
+    margin: 0 auto;
+}
+
+
+/* Текст под заголовком */
+.cake__text {
+    max-width: 360px;
+    margin-bottom: 20px;
+}
+
+/* Поля формы */
+.bottom_field {
+    border: 1px solid #ac907a;
+    border-radius: 100px;
+    padding: 19px 28px;
+    width: 420px;
+    height: 62px;
+    margin-bottom: 10px;
+    color: #AC907A;
+    background-color: #ffffff00;
+    font-size: 17px;
+}
+
+.bottom_field:hover {
+    border-color: var(--accent-color);
+}
+
+.cake__nomber {
+    margin-right: 10px;
+}
+
+/* Контейнер для чекбокса и подписи */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cake__ckeck {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #312c27;
+}
+
+.cake__ckeck a {
+    text-decoration: underline;
+}
+
+.berries {
+    position: relative;
+    left: 376px;
+    top: 115px;
+}
+
+.berries-2 {
+    position: relative;
+    left: 1530px;
+    top: -610px;
+}
+
+
+/* Дополнительные пресеты для адаптивности (опционально) */
+@media(max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .main__bottom {
+        padding: 20px 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ================================================ */
 /* ================================================ */
 /* ================================================ */
