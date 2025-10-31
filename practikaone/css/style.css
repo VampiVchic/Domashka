@@ -676,8 +676,54 @@
 .main__bottom {
     position: relative;
     max-width: 100%;
-    max-height: auto;
     background: url('../img/decor/bg-footer.png') 50% 100% / cover no-repeat;
+    padding-top: 150px;
+    overflow: hidden;
+}
+
+.main__decor-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.main__cake-image {
+    position: relative;
+    display: inline-block;
+}
+
+.berries-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.main__berries {
+    position: absolute;
+    top: -28%;
+    left: -2%;
+    width: 10%;
+    max-width: 150px;
+    height: auto;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.main__berries2 {
+    position: absolute;
+    bottom: 73%;
+    right: -134%;
+    width: 10%;
+    max-width: 150px;
+    height: auto;
+    transition: all 0.3s ease;
+    pointer-events: none;
 }
 
 .main__bottom-grid {
@@ -687,6 +733,8 @@
     max-width: 1300px;
     margin: 0 auto;
     padding: 50px 0 140px;
+    position: relative;
+    z-index: 2;
 }
 
 .main__cake-image img {
@@ -712,21 +760,28 @@
     border: 1px solid #ac907a;
     border-radius: 100px;
     padding: 19px 28px;
-    width: 420px;
+    width: 100%;
+    max-width: 420px;
     height: 62px;
     margin-bottom: 10px;
     color: #AC907A;
     background-color: transparent;
     font-size: 17px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.1s 0s;
 }
 
 .bottom-field:hover {
     border-color: var(--accent-color);
 }
+.bottom-field:hover::placeholder {
+    color: var(--accent-color);
+}
+
 
 .cake__checkbox {
     appearance: none;
-    -webkit-appearance: none;
     width: 20px;
     height: 20px;
     background-color: transparent;
@@ -774,45 +829,6 @@
     text-decoration: underline;
 }
 
-.main__berries {
-    position: relative;
-    left: 376px;
-    top: 115px;
-}
-
-.main__berries2 {
-    position: relative;
-    left: 1530px;
-    top: -610px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -855,6 +871,15 @@
         grid-column: 1 / -1;
         text-align: center;
     }
+
+    /* -------------- */
+    .main__cake-image {
+        display: none;
+    }
+
+    .main__bottom-grid {
+    display: block;
+}
 }
 
 @media (max-width: 1100px) {
