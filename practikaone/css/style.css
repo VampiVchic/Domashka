@@ -669,7 +669,7 @@
 
 .contact {
     padding: 140px 0;
-    background: url("../img/decor/bg-footer.png") 50% 0% / cover no-repeat;
+    background: url("img/decor/bg-footer.png") 50% 0% / cover no-repeat;
 }
 .contact__inner {
     display: flex;
@@ -1197,4 +1197,5 @@
     .testimonials__slide {
         padding: 30px 10px 30px;
     }
+
 }
