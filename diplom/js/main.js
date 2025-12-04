@@ -53,31 +53,28 @@ document.querySelectorAll('.tab').forEach(tab => {
     });
 });
 
-// Логика ховера: картинка → текст (для training__grid)
+// Логика ховера: картинка → текст, и текст → картинка (для training__grid)
 document.addEventListener('DOMContentLoaded', () => {
     const imageItems = document.querySelectorAll('.image__item');
+    const textItems = document.querySelectorAll('.text__item');
 
+    // === Логика: картинка → текст ===
     imageItems.forEach(item => {
         const targetId = item.getAttribute('data-target');
-
         if (!targetId) return;
 
-        // Находим связанный текстовый блок
         const textItem = document.querySelector(`.text__item[data-id="${targetId}"]`);
-
         if (!textItem) return;
 
-        // При наведении на картинку — заполняем её и подсвечиваем заголовок
+        // При наведении на картинку — активируем текст
         item.addEventListener('mouseenter', () => {
             textItem.classList.add('text__item--active');
 
             // Определяем направление заполнения
             const index = Array.from(imageItems).indexOf(item);
             if (index === 0 || index === 1) {
-                // Слева-направо (1, 3)
                 item.style.setProperty('--fill-direction', 'left');
             } else {
-                // Справа-налево (6, 8)
                 item.style.setProperty('--fill-direction', 'right');
             }
 
@@ -85,10 +82,39 @@ document.addEventListener('DOMContentLoaded', () => {
             item.style.setProperty('--fill-width', '100%');
         });
 
-        // При уходе — сбрасываем
         item.addEventListener('mouseleave', () => {
             textItem.classList.remove('text__item--active');
             item.style.setProperty('--fill-width', '0');
+        });
+    });
+
+    // === Логика: текст → картинка ===
+    textItems.forEach(item => {
+        const targetId = item.getAttribute('data-id');
+        if (!targetId) return;
+
+        const imageItem = document.querySelector(`.image__item[data-target="${targetId}"]`);
+        if (!imageItem) return;
+
+        // При наведении на текст — активируем картинку
+        item.addEventListener('mouseenter', () => {
+            item.classList.add('text__item--active');
+
+            // Определяем направление заполнения
+            const index = Array.from(imageItems).indexOf(imageItem);
+            if (index === 0 || index === 1) {
+                imageItem.style.setProperty('--fill-direction', 'left');
+            } else {
+                imageItem.style.setProperty('--fill-direction', 'right');
+            }
+
+            // Запускаем анимацию заполнения
+            imageItem.style.setProperty('--fill-width', '100%');
+        });
+
+        item.addEventListener('mouseleave', () => {
+            item.classList.remove('text__item--active');
+            imageItem.style.setProperty('--fill-width', '0');
         });
     });
 });

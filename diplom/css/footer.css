@@ -90,7 +90,7 @@ span.title__tip__tree::before {
 }
 
 .social__link svg:hover path {
-    fill: var(--general-text); 
+    fill: var(--general-text);
     transition: fill 0.3s ease, transform 0.3s ease;
 }
 
@@ -101,7 +101,6 @@ span.title__tip__tree::before {
 
 .rootes {
     background: #303030;
-    max-width: 1920px;
     height: 88px;
     text-transform: none;
     color: #a6a6a6;
@@ -119,6 +118,70 @@ span.title__tip__tree::before {
     padding-top: 28px;
 }
 
+/* ===== ПЛАВНОСТЬ ДЛЯ ВСЕХ HOVER-ЭФФЕКТОВ ===== */
+/* ===== БОЛЕЕ ЗАМЕТНАЯ ПЛАВНОСТЬ ДЛЯ ВСЕХ HOVER-ЭФФЕКТОВ ===== */
 
+/* Основной заголовок */
+.title__tip__tree {
+    font-family: "Oswald";
+    font-weight: 400;
+    font-size: 42px;
+    color: #fff;
+    text-transform: none;
+    position: relative;
+    transition: color 0.5s ease;
+    /* ← увеличили до 0.5s */
+}
 
+span.title__tip__tree::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%) scale(0);
+    width: 16px;
+    height: 16px;
+    background-color: #F47521;
+    border-radius: 50%;
+    z-index: -1;
+    transition: transform 0.5s ease;
+    /* ← увеличили до 0.5s */
+}
 
+.title__tip__tree:hover::before {
+    transform: translate(-50%, -50%) scale(4);
+}
+
+/* Ссылки в контактах */
+.contact__link {
+    display: block;
+    margin-bottom: 4px;
+    font-family: "Oswald";
+    font-weight: 400;
+    font-size: 42px;
+    color: #fff;
+    text-transform: none;
+    transition: color 0.5s ease, text-decoration 0.5s ease;
+    /* ← увеличили до 0.5s */
+}
+
+.contact__link:hover {
+    text-decoration: underline;
+    color: var(--general-text);
+}
+
+/* Иконки соцсетей */
+.social__link svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+    transition: fill 0.5s ease;
+    /* ← увеличили до 0.5s */
+    margin-top: 24px;
+}
+
+.social__link svg:hover path {
+    fill: var(--general-text);
+    transition: fill 0.5s ease, transform 0.5s ease;
+    /* ← увеличили до 0.5s */
+}

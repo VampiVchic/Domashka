@@ -30,12 +30,15 @@
 /* ================================================================================= */
 
 .img__intro {
-    position: absolute;
-    top: 60%;
-    height: 50%;
+    position: relative;
+    top: -249px;
+    /* ← сдвигаем вверх */
     width: 100%;
+    height: 600px;
+    /* ← фиксированная высота */
     background: url(../img/1.jpg) 100% 40% / cover no-repeat;
     background-position: 100% 40%;
+    z-index: 1;
 }
 
 .img__intro::before {
@@ -49,11 +52,13 @@
     background-position: 100% 40%;
     filter: grayscale(100%);
     z-index: 1;
+    pointer-events: none;
 }
 
 .arrow__intro {
     position: absolute;
-    top: -9.7%;
+    top: 494px;
+    /* ← отступ сверху */
     left: 50%;
     transform: translateX(-50%);
     width: 122px;
@@ -65,7 +70,6 @@
     border-radius: 50%;
     z-index: 10;
     padding: 5px;
-
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -80,7 +84,10 @@
     display: flex;
     width: 100%;
     height: 100%;
-    padding-top: 10%;
+    position: relative;
+    z-index: 2;
+    margin-top: -250px;
+    /* ← сдвигаем вверх */
     /* Можно оставить для отступа сверху */
     /* Можно добавить выравнивание по вертикали, если нужно */
     /* align-items: center; */
@@ -332,7 +339,7 @@
 
 /* Неактивная точка — только белый кружок, без номера */
 .swiper-pagination button:not(.swiper-pagination-bullet-active):hover {
-    transform: scale(3);
+    transform: scale(2.5);
     background-color: #141414;
     /* останется белым */
     border-color: var(--general-text);
@@ -350,7 +357,7 @@
     background-color: #141414;
     /* белый фон */
     border-color: var(--general-text);
-    transform: scale(3);
+    transform: scale(2.5);
     /* масштаб если нужно */
 }
 
@@ -540,11 +547,16 @@
 }
 
 /* =====ХОВЕР ДЛЯ КАРТОЧЕК */
-.card:hover {
-    transform: scale(.95);
-    box-shadow: 0 0 20px rgba(255, 5, 5, 0.6);
+/* ===== ОСНОВНЫЕ СТИЛИ ===== */
+.card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    /* ← важно для скрытия текста */
 }
 
+/* ===== ГРАДИЕНТ ===== */
 .card::before {
     content: '';
     position: absolute;
@@ -552,15 +564,42 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(45deg, rgba(40, 255, 40, 0.2), transparent);
+    background: linear-gradient(45deg, rgba(235, 152, 9, 0.414), transparent);
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.4s ease;
+    z-index: 1;
     pointer-events: none;
+}
+
+/* ===== ТЕНЬ ===== */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(235, 152, 9, 0.3);
+    /* оранжевая тень */
 }
 
 .card:hover::before {
     opacity: 1;
+}
+
+/* ===== ТЕКСТ СНИЗУ ===== */
+.cards__text {
+    position: absolute;
+    bottom: -100%;
+    /* ← изначально скрыт */
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--accent-color);
+    border-top: 2px solid #000;
+    transition: bottom 0.4s ease;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.card:hover .cards__text {
+    bottom: 0;
+    /* ← появляется снизу */
 }
 
 /* ============================================================================== */
@@ -804,16 +843,17 @@
 .container__boxing {
     display: flex;
     flex-direction: row;
-    /* или просто flex, по умолчанию row */
     align-items: center;
-    /* по вертикали */
     position: relative;
+    max-width: 100%;
+    height: 100%;
 }
 
 /* Обертка для картинки */
 .image__block {
     position: relative;
-    width: 960px;
+    width: 50%;
+    /* ← занимает половину контейнера */
     height: 832px;
     overflow: hidden;
 }
@@ -828,18 +868,17 @@
 /* Вторая картинка: эффект размытия и overlay */
 .effect__image {
     position: relative;
+    width: 50%;
+    /* ← занимает половину контейнера */
+    height: 832px;
 }
 
 /* Размытие */
 .effect__image .blurred {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 960px;
-    height: 832px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     filter: blur(8px);
-    /* настройте по желанию */
     z-index: 1;
 }
 
@@ -917,8 +956,10 @@
 /* Картинка, которую нужно поверх */
 .potent {
     position: absolute;
-    left: 44.5%;
-    top: 36.1%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
 }
 
 /* ===================================================================================== */
@@ -1222,6 +1263,12 @@
     background: #F47521;
 }
 
+.read__more:hover {
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    /* ← плавность */
+}
+
 /* Ховер: при наведении на картинку — изменение цвета заголовка в связанной текстовой ячейке */
 /* Класс для активного заголовка */
 .image__item::before {
@@ -1260,6 +1307,11 @@
     margin: 0 0 15px 0;
     line-height: 1.2;
     transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.text__item:hover h3 {
+    color: #F47521;
+    transform: scale(0.95);
 }
 
 /* Класс для активного заголовка */
@@ -1555,6 +1607,84 @@
     }
 }
 
+/* ===== АФИГЕННЫЙ ХОВЕР ДЛЯ ЯЧЕЕК ТАБЛИЦЫ ===== */
+.timetable__class__cell,
+.timetable__time__slot {
+    position: relative;
+    transition: background 0.3s ease, transform 0.3s ease;
+    z-index: 1;
+}
+
+.timetable__class__cell::before,
+.timetable__time__slot::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    pointer-events: none;
+    z-index: -1;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.timetable__class__cell:hover,
+.timetable__time__slot:hover {
+    background: rgba(244, 117, 33, 0.1);
+    /* оранжевый полупрозрачный фон */
+    transform: scale(1.03);
+    /* лёгкое увеличение */
+    z-index: 2;
+}
+
+.timetable__class__cell:hover::before,
+.timetable__time__slot:hover::before {
+    border-color: #f47521;
+    /* оранжевая рамка */
+    opacity: 1;
+    animation: pulse-border 1s infinite alternate;
+    /* анимация пульсации */
+}
+
+@keyframes pulse-border {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.05);
+        opacity: 0.6;
+    }
+}
+
+/* ===== АНИМАЦИЯ СМЕНЫ ТАБЛИЦ ===== */
+.timetable__table {
+    background-color: #141414;
+    color: #fff;
+    display: block;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.7s ease, opacity 0.7s ease;
+}
+
+.timetable__table:not(.active) {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+}
+
+.timetable__table.active {
+    max-height: 1000px;
+    /* ← подбери высоту */
+    opacity: 1;
+}
+
+
 /* ========================================================================================= */
 /* ============= Секция: Пресс-видео (финальная) — под макет 1920x815 ============= */
 .press-video {
@@ -1759,10 +1889,36 @@
     /* ✅ точное расстояние */
     text-transform: none;
     position: relative;
-    /* ← важно для z-index */
+    z-index: 1;
 }
 
+/* Круг при ховере и активном табе */
+.tab__name::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    /* ← регулируйте позицию */
+    transform: translate(-50%, -50%) scale(0);
+    width: 59px;
+    height: 59px;
+    background-color: #FF7A00;
+    /* ← твой оранжевый */
+    border-radius: 50%;
+    z-index: -1;
+    /* ← под текстом */
+    transition: transform 0.3s ease;
+}
 
+/* При наведении — кружок появляется */
+.tab__name:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* При активном табе — кружок остаётся */
+.tab__item.active .tab__name::before {
+    transform: translate(-50%, -50%) scale(1);
+}
 
 .arrow__placeholder {
     width: 20px;
@@ -1898,7 +2054,6 @@
     width: 100%;
     height: 488px;
     overflow: hidden;
-    border-radius: 4px;
 }
 
 .coaches-media img {
@@ -2653,7 +2808,7 @@
         font-size: 12px;
     }
 
-    
+
 }
 
 /* ===== ОСНОВНЫЕ СТИЛИ ===== */
@@ -2722,3 +2877,15 @@
         padding-bottom: 20px;
     }
 }
+
+
+
+
+/* Картинка с текстом скопировать,
+протеин убрать падинги, 
+виды тренировок сгруппировать, 
+интро картинка скопировать, 
+чего нибудь придумать с табами, 
+чего нибудь придумать с карточками с ховером, 
+вторые табы изменить падинг вниз, картинки с твиттера скопировать,
+блок - размеры */
