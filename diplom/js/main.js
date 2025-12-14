@@ -180,3 +180,43 @@ document.addEventListener('keydown', (e) => {
         document.body.classList.remove('body--opened-menu');
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const playButton = document.querySelector('.press-video__play-btn');
+    const modalOverlay = document.getElementById('videoModalOverlay');
+    const closeModalBtn = document.getElementById('closeVideoModal');
+
+    // Функция открытия
+    function openModal() {
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Блокируем прокрутку
+    }
+
+    // Функция закрытия
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = ''; // Возвращаем прокрутку
+        // Сбрасываем воспроизведение видео
+        const video = modalOverlay.querySelector('video');
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+    }
+
+    // Обработчики событий
+    playButton.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+
+    modalOverlay.addEventListener('click', function(event) {
+        if (event.target === modalOverlay) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closeModal();
+        }
+    });
+});

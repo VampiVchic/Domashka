@@ -1748,6 +1748,72 @@
     transform: translate(-50%, -50%) scale(1.12);
 }
 
+/* Скрываем модальное окно по умолчанию */
+.modal-overlay {
+    display: none;
+    /* Скрыто */
+}
+
+.modal-overlay.active {
+    display: flex;
+    /* Показываем как flex при активации */
+    position: fixed;
+    /* Зафиксированное позиционирование */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.video-modal {
+    position: relative;
+    background-color: #000;
+    /* Фон для видео */
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-button:hover {
+    background-color: rgba(255, 0, 0, 0.7);
+}
+
+/* Убедимся, что SVG-кнопка кликабельна */
+.press-video__container {
+    position: relative;
+}
+
+.press-video__play-btn {
+    cursor: pointer;
+    z-index: 10;
+}
+
 /* Адаптив: уменьшаем высоту и размер кнопки */
 @media (max-width: 1024px) {
     .press-video__image-wrapper {
@@ -2033,6 +2099,8 @@
     flex-wrap: wrap;
     position: relative;
     z-index: 2;
+    margin-right: 0;
+    gap: 20px;
 }
 
 .coaches-card {
@@ -2040,7 +2108,6 @@
     flex-direction: column;
     align-items: flex-start;
     width: 350px;
-    margin-right: 77px;
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
@@ -2500,6 +2567,30 @@
     .tab {
         font-size: 70px;
     }
+
+    .coaches-card {
+        margin-right: 0px;
+    }
+
+    .coaches-grid {
+        gap: 20px;
+    }
+
+    .blog-cards {
+        flex-wrap: wrap;
+    }
+
+    .latest-blog {
+        padding-left: 20px;
+    }
+
+    .read-more-btn {
+        margin-bottom: 20px;
+    }
+
+
+
+
 }
 
 /* ===== АДАПТИВ: до 991px — основной брейкпоинт ===== */
@@ -2678,7 +2769,6 @@
     }
 
     .blog-card {
-        width: 100%;
         max-width: 400px;
         height: auto;
     }
@@ -2804,7 +2894,9 @@
         font-size: 16px;
     }
 
-
+    .programs-media img {
+        padding-top: 40px;
+    }
 
 
     /* цифры - статистика */
@@ -2820,6 +2912,11 @@
     .stat-item p {
         font-size: 15px;
     }
+
+
+
+
+
 
 }
 
@@ -2853,6 +2950,8 @@
     .stat-item {
         padding: 18px;
     }
+
+
 
 
 }
@@ -3003,6 +3102,16 @@
 /* ===== АДАПТИВ: до 480px — iPhone SE ===== */
 @media (max-width: 480px) {
 
+
+    .content h2 {
+        font-size: 27px;
+    }
+
+    .content .text {
+        font-size: 10px;
+    }
+
+
     .stat-item {
         padding: 5px;
     }
@@ -3145,7 +3254,7 @@
         font-size: 1.2rem;
     }
 
-    
+
 
 
     /* ===== ФУТЕР ===== */
@@ -3181,8 +3290,9 @@
     }
 
     .logo svg {
-        width: 120px;
+        width: 80px;
     }
+
 
     /* ===== КАРТОЧКИ ===== */
     .card {

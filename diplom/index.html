@@ -125,8 +125,8 @@
             <svg width="57" height="57" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.25 28.25H55.25" stroke="black" stroke-width="2.5" stroke-linecap="round"
                     stroke-linejoin="round" />
-                <path d="M28.25 1.25L55.25 28.25L28.25 55.25" stroke="black" stroke-width="2.5"
-                    stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M28.25 1.25L55.25 28.25L28.25 55.25" stroke="black" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
             </svg>
         </a>
         <div class="fitness__wrapper">
@@ -971,7 +971,6 @@
             <div class="press-video__container">
                 <div class="press-video__image-wrapper">
                     <img src="img/press/1.jpg" alt="Презентация бренда" class="press-video__image">
-                    <!-- SVG-кнопка Play (встроенная, без внешних зависимостей) -->
                     <svg class="press-video__play-btn" width="122" height="122" viewBox="0 0 122 122" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -980,7 +979,18 @@
                         <path d="M49 34L83 61L49 88V34Z" stroke="white" stroke-width="2.5" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
+                </div>
+            </div>
 
+            <!-- Модальное окно -->
+            <div class="modal-overlay" id="videoModalOverlay">
+                <div class="modal-content video-modal">
+                    <button class="modal-close-button" id="closeVideoModal">&times;</button>
+                    <!-- Видео сразу в разметке -->
+                    <video controls width="100%" height="100%">
+                        <source src="./video/1.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
                 </div>
             </div>
         </section>
