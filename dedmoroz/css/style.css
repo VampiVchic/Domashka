@@ -1,0 +1,264 @@
+body {
+    background-color: #bdd3dd;
+    font-family: 'Parisienne', serif;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background-image: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ccircle cx='20' cy='20' r='2' fill='white'/%3E%3Ccircle cx='50' cy='10' r='1.5' fill='white'/%3E%3Ccircle cx='80' cy='30' r='1' fill='white'/%3E%3Ccircle cx='10' cy='50' r='1.2' fill='white'/%3E%3Ccircle cx='90' cy='70' r='1.8' fill='white'/%3E%3Ccircle cx='30' cy='90' r='1.4' fill='white'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    animation: snowFall 10s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes snowFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+.ded-moroz-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    text-align: center;
+}
+
+.ded-moroz {
+    max-width: 100%;
+    height: 73px;
+    max-height: 81px;
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
+}
+
+.letter-container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 10;
+    position: relative;
+    font-family: 'Parisienne', cursive;
+    padding-top: 20px;
+}
+
+.corner-images {
+    position: absolute;
+    z-index: 15;
+}
+
+.left-corner {
+    top: 70%;
+    left: 22px;
+}
+
+.right-corner {
+    bottom: 7px;
+    right: -33px;
+}
+
+.girl {
+    max-width: 120px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.tree {
+    max-width: 100px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 60px;
+    z-index: 2;
+}
+
+.snowman {
+    max-width: 100px;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    animation: jump 2s infinite ease-in-out;
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.header {
+    background: linear-gradient(to bottom, #c62828, #b71c1c);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    transition: all 0.3s ease;
+}
+
+.header h1.glow {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de;
+    animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.7;
+    }
+}
+
+.content {
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
+}
+
+th {
+    background-color: #e0e0e0;
+    width: 40%;
+}
+
+tr:hover td,
+tr:hover th {
+    background-color: #f0f8ff;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+tr:hover td::before,
+tr:hover th::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(255, 255, 255, 0.5),
+            transparent);
+    transform: rotate(45deg);
+    animation: shine 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.footer {
+    background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.greeting {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+.snowflake {
+    position: absolute;
+    top: -20px;
+    color: #fff;
+    user-select: none;
+    pointer-events: none;
+    font-size: 1em;
+    animation-name: fall, spin;
+    animation-timing-function: linear, linear;
+    animation-iteration-count: infinite, infinite;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(105vh);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
