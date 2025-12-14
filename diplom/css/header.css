@@ -222,3 +222,39 @@ body.body--opened-menu {
     color: #F47521;
 }
 
+/* ===== HOVER ДЛЯ ИКОНОК В ХЕДЕРЕ ===== */
+
+/* Общий стиль для ссылок с иконками */
+.shop a {
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+}
+
+/* Hover: увеличение иконки */
+.shop a:hover {
+    transform: scale(1.1);
+}
+
+/* Отдельный hover для SVG внутри ссылки */
+.shop a svg {
+    transition: fill 0.3s ease;
+    /* ← важно для плавности */
+}
+
+/* Плавное изменение цвета path при наведении */
+.shop a:hover path {
+    fill: #F47521;
+    transition: fill 0.3s ease;
+    /* ← плавность закраски */
+}
+
+/* ===== HOVER ДЛЯ СЧЁТЧИКА В КОРЗИНЕ ===== */
+.cart-count {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* При наведении на корзину — счётчик увеличивается */
+.shop a:hover .cart-count {
+    transform: scale(1.15);
+}

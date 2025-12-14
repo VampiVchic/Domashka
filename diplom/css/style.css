@@ -786,7 +786,7 @@
 
 .orange__line {
     width: 100%;
-    height: 108px !important;
+    height: 108px;
     background-color: var(--general-text);
     display: flex;
     justify-content: center;
@@ -874,23 +874,24 @@
 }
 
 /* Размытие */
+/* ===== РАЗМЫТИЕ ===== */
 .effect__image .blurred {
     width: 100%;
     height: 100%;
     object-fit: cover;
     filter: blur(8px);
+    /* ← убираем grayscale */
     z-index: 1;
 }
 
 /* Рыжий прозрачный фон поверх размытого изображения */
+/* ===== РЫЖИЙ ОВЕРЛЕЙ ===== */
 .effect__image .overlay {
     position: absolute;
     top: 0;
     left: 0;
-    width: 960px;
-    height: 832px;
-    background: rgba(114, 50, 7, 0.5);
-    /* рыжий цвет с прозрачностью */
+    width: 100%;
+    height: 100%;
     z-index: 2;
 }
 
@@ -899,12 +900,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 960px;
-    height: 832px;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: rgba(244, 117, 33, 0.281);
     z-index: 3;
 }
 
@@ -1098,7 +1100,6 @@
 .stats-container {
     display: flex;
     width: 100%;
-    max-width: 1920px;
     margin-top: 238px;
     /* Добавляем box-sizing, чтобы padding не увеличивал ширину */
     box-sizing: border-box;
@@ -1135,6 +1136,7 @@
     font-size: 100px;
     text-align: center;
     color: #141414;
+
 }
 
 .stat-item p {
@@ -1145,6 +1147,7 @@
     text-align: center;
     color: #141414;
     margin: 0;
+
 }
 
 /* =========================================================================================== */
@@ -2318,61 +2321,48 @@
 /* Мобильные (по умолчанию — базовые стили) */
 /* от 0px */
 
+/* ===== ГЛОБАЛЬНЫЕ СТИЛИ ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 /* ===== АДАПТИВ: до 1440px — начинаем скрывать навигацию ===== */
 @media (max-width: 1440px) {
     .header {
         padding-top: 30px;
     }
 
-    /* ==== Обнуляем padding у ul === */
     .nav-list {
         padding: 0;
         margin: 0;
         list-style: none;
     }
 
-    /* Скрываем все пункты, кроме первого (логотип) и последнего (shop) */
     .nav-list>li:not(:first-child):not(:last-child) {
         display: none;
     }
 
-    /* Показываем бургер */
     .burger-icon {
         display: block;
     }
 
-    /* Убираем линию под хедером (или оставляем — по желанию) */
     .white__line {
         display: none;
     }
 
-    /* Подстраиваем отступы внутри .shop */
     .shop {
         gap: 24px;
-        /* можно уменьшить, если иконки слипаются */
     }
 
-    /* Уменьшаем логотип, если нужно (опционально) */
     .header-logo svg {
         width: 160px;
         height: auto;
     }
 
-    /* ==== Убедись, что все элементы учитывают padding в width ==== */
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
 
-    .main__title__text {
-        display: none;
-    }
-
-    .img__intro {
-        display: none;
-    }
-
+    /* ===== КАРТОЧКИ ===== */
     .cards__text {
         padding: 48px 48px 44px 56px;
     }
@@ -2386,6 +2376,7 @@
         height: 22px;
     }
 
+    /* ===== БЛОГ ===== */
     .latest-blog {
         padding: 120px 0 100px;
         padding-left: 200px;
@@ -2420,47 +2411,125 @@
     .card-title {
         font-size: 22px;
     }
+
+    .arrow__intro {
+        display: none;
+    }
+
+    .second__container {
+        padding-left: 15px;
+    }
+
+    .protein__title {
+        font-size: 25px;
+    }
+
+    .protein__second__title {
+        font-size: 20px;
+    }
+
+    .protein__text {
+        font-size: 15px;
+    }
+
+
+    /* ===== АДАПТИВ: до 1440px — картинки в столбик ===== */
+    .container__boxing {
+        flex-direction: column;
+        /* ← теперь в столбик */
+        align-items: center;
+        /* ← центрируем по горизонтали */
+    }
+
+    .image__block {
+        width: 100%;
+        /* ← занимает всю ширину */
+        height: 500px;
+        /* ← уменьшаем высоту */
+    }
+
+    .effect__image .overlay,
+    .content__overlay {
+        width: 100%;
+        /* ← чтобы не вылезали за границы */
+        height: 500px;
+        /* ← та же высота */
+    }
+
+    /* ===== ПАТЕНТ ===== */
+    .potent {
+        /* position: static; */
+        /* ← не absolute */
+        /* transform: none; */
+        /* ← убираем трансформ */
+        /* margin: -20px 0; */
+        /* ← можно чуть поднять/опустить */
+        width: 10%;
+    }
+
+    .quotes {
+        width: 10%;
+    }
+
+    /* ===== ТЕКСТ ===== */
+    .text__below__svg {
+        font-size: 36px;
+        /* ← уменьшаем шрифт */
+    }
+
+    .svg__container {
+        margin-bottom: 30px;
+        /* ← уменьшаем отступ */
+    }
+
+    .line__boxing {
+        margin-bottom: 40px;
+        /* ← уменьшаем отступ */
+    }
+
+    .additional__text {
+        font-size: 16px;
+        /* ← уменьшаем шрифт */
+    }
+
+    .name_author {
+        font-size: 24px;
+        /* ← уменьшаем шрифт */
+    }
+
+    .tab {
+        font-size: 70px;
+    }
 }
 
-
+/* ===== АДАПТИВ: до 991px — основной брейкпоинт ===== */
 @media (max-width: 991px) {
     .container {
         max-width: none;
-        /* ← важно! */
         padding: 0 16px;
-        /* можно уменьшить отступы */
     }
 
+    /* ===== БЛОК ФИТНЕСА ===== */
     .fitness__wrapper {
         flex-direction: column;
-        /* ← вместо row */
         padding-top: 5%;
-        /* можно уменьшить отступ сверху */
     }
 
     .fitness__cell {
         width: 100%;
-        /* ← занимаем всю ширину */
         padding: 40px 32px 36px 40px;
-        /* уменьшаем отступы */
         border-right: none;
-        /* убираем правую границу */
         border-bottom: 2px solid #000;
-        /* добавляем нижнюю границу */
     }
 
-    /* Уменьшаем заголовки */
     .box__title {
         font-size: 32px;
-        /* было 42px */
     }
 
     .fitness__traning {
         font-size: 18px;
-        /* было 20px */
     }
 
-    /* Уменьшаем кнопку */
     .check__box {
         font-size: 14px;
         padding: 8px 0;
@@ -2476,10 +2545,9 @@
         display: none;
     }
 
-
+    /* ===== КАРТОЧКИ ===== */
     .cards__wrapper {
         flex-direction: column;
-        gap: 2px;
         align-items: center;
     }
 
@@ -2504,13 +2572,11 @@
         height: 20px;
     }
 
-    /* ===== АДАПТИВ: до 991px — footer в стек ===== */
-
+    /* ===== ФУТЕР ===== */
     .footer__container {
         display: flex;
         flex-direction: column;
         gap: 40px;
-        /* увеличиваем отступ между колонками */
         padding-top: 60px;
         padding-bottom: 80px;
     }
@@ -2518,10 +2584,8 @@
     .footer__column {
         width: 100%;
         text-align: center;
-        /* ← центрируем всё содержимое */
     }
 
-    /* Уменьшаем заголовки */
     .second__title {
         font-size: 18px;
     }
@@ -2535,10 +2599,8 @@
         line-height: 1.2;
     }
 
-    /* Уменьшаем соцсети */
     .social-icons {
         justify-content: center;
-        /* ← центрируем иконки */
         gap: 16px;
     }
 
@@ -2548,13 +2610,11 @@
         stroke-width: 2;
     }
 
-    /* Уменьшаем адреса */
     .location__item p {
         font-size: 16px;
         line-height: 1.4;
     }
 
-    /* Убираем grid и делаем блоки по центру */
     .footer__contact {
         display: flex;
         flex-direction: column;
@@ -2563,7 +2623,6 @@
         padding-top: 60px;
     }
 
-    /* Логотип и заголовок в хедере footer */
     .upper__line {
         flex-direction: column;
         align-items: center;
@@ -2582,6 +2641,7 @@
         height: auto;
     }
 
+    /* ===== БЛОГ ===== */
     .latest-blog {
         padding: 80px 20px;
         padding-left: 20px;
@@ -2630,10 +2690,175 @@
     .card-title {
         font-size: 20px;
     }
+
+    .tab {
+        font-size: 55px;
+    }
+
+    .training__grid .container__boxing {
+        padding: 0;
+    }
+
+    .grid__container {
+        display: flex;
+        flex-direction: column;
+        /* ← отступ между ячейками */
+    }
+
+    .grid__item {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .image__item img,
+    .text__item {
+        width: 100%;
+        height: auto;
+    }
+
+    .image__item img {
+        object-fit: cover;
+        height: 300px;
+        /* ← уменьшаем высоту */
+    }
+
+    .text__item {
+        padding: 20px;
+        background-color: #141414;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .training__label {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    h3 {
+        font-size: 24px;
+        margin: 0 0 10px 0;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.5;
+        margin: 0 0 15px 0;
+    }
+
+    .read__more {
+        font-size: 14px;
+        padding: 5px 10px;
+        margin-top: 10px;
+    }
+
+    .points__traning {
+        position: absolute;
+        top: 70%;
+        left: 70%;
+        transform: scale(1.5);
+        width: 50px;
+        height: 50px;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+
+    .timetable__section {
+        padding: 40px 0;
+    }
+
+    .timetable__title {
+        font-size: 50px;
+    }
+
+    .timetable__tabs_points {
+        display: none;
+        /* ← скрываем паттерн */
+    }
+
+    .timetable__tabs {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .timetable__tab {
+        font-size: 20px;
+        padding: 8px 15px;
+    }
+
+    .timetable__header,
+    .timetable__grid {
+        grid-template-columns: 1fr repeat(7, 1fr);
+    }
+
+    .timetable__time__slot,
+    .timetable__class__cell {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .timetable__time__slot {
+        font-size: 16px;
+    }
+
+
+
+
+    /* цифры - статистика */
+
+    .stat-item {
+        padding: 49px;
+    }
+
+    .stat-item h3 {
+        font-size: 50px;
+    }
+
+    .stat-item p {
+        font-size: 15px;
+    }
+
 }
 
-/* Планшеты (поперёк) */
-@media (min-width: 768px) {
+/* ===== АДАПТИВ: до 808px — промежуточный брейкпоинт ===== */
+@media (max-width: 808px) {
+    .programs-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .programs-card {
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+        margin-right: 0;
+    }
+
+    .programs-title {
+        font-size: 32px;
+    }
+
+    .programs-label {
+        font-size: 16px;
+    }
+
+    .programs-media-wrapper {
+        padding-bottom: 30px;
+    }
+
+    .stat-item {
+        padding: 18px;
+    }
+
+
+}
+
+/* ===== АДАПТИВ: до 768px — планшет ===== */
+@media (max-width: 768px) {
     .programs-card {
         padding-bottom: 40px;
     }
@@ -2641,11 +2866,289 @@
     .blog-card {
         max-width: 350px;
     }
+
+    .main__title__text {
+        font-size: 25vw;
+    }
+
+    .text-within {
+        font-size: 50vw;
+    }
+
+    .tab::before {
+        display: none;
+        /* ← скрываем кружок */
+    }
+
+
+    .timetable__header>div {
+        padding: 0px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 8px;
+        color: #979797;
+        border-left: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .timetable__time__slot {
+        font-size: 8px;
+    }
+
+    .timetable__time__slot,
+    .timetable__class__cell {
+        padding: 0px;
+        font-size: 7px;
+    }
+
+    .timetable__class__cell span {
+        font-size: 7px;
+    }
+
+
+    /* Адаптируем основной контейнер */
+    .coaches-section {
+        padding-left: 10px;
+        /* Уменьшаем боковые отступы */
+        padding-right: 10px;
+        /* padding-top и padding-bottom можно оставить или тоже уменьшить */
+    }
+
+    /* Адаптируем заголовок и подзаголовок */
+    .coaches-heading {
+        font-size: clamp(2rem, 5vw, 4rem);
+        /* Пример responsive typography */
+        /* padding-top и padding-bottom можно уменьшить */
+    }
+
+    .coaches-subheading {
+        font-size: clamp(0.9rem, 3vw, 1.1rem);
+        /* Пример responsive typography */
+        /* padding-top и padding-bottom можно уменьшить */
+    }
+
+    /* Адаптируем водяной знак и точки (убеждаемся, что позиционирование корректно при изменении масштаба) */
+    .coaches-watermark {
+        /* top и right могут требовать пересмотра */
+        /* top: -30%; /* Пример изменения позиции */
+        /* right: 50%; /* Пример изменения позиции */
+        font-size: 200px;
+        /* Уменьшаем размер огромного текста */
+        /* width: 500px; /* Если width фиксирован, возможно, нужно уменьшить или сделать % */
+        /* height: 500px; /* Аналогично */
+    }
+
+    .coaches-points {
+        /* top и left могут требовать пересмотра */
+        /* top: 30%; /* Пример изменения позиции */
+        /* left: 55%; /* Пример изменения позиции */
+        width: 500px;
+        /* Уменьшаем размер SVG */
+        height: 500px;
+    }
+
+    /* Адаптируем сетку карточек */
+    .coaches-grid {
+        gap: 15px;
+        /* Уменьшаем расстояние между карточками */
+        /* padding-left и padding-right можно уменьшить */
+    }
+
+    /* Адаптируем каждую карточку */
+    .coaches-card {
+        /* width: calc((100% - 15px) / 2); /* Пример изменения ширины для 2 колонок */
+        margin-right: 0;
+        /* Убираем фиксированный margin-right */
+        margin-bottom: 20px;
+        /* Увеличиваем margin-bottom, если карточки теперь в 1 колонку */
+    }
+
+    /* Адаптируем содержимое карточки */
+    .coaches-media img {
+        max-width: 100%;
+        /* Убедимся, что изображение отзывчиво */
+        /* width и height, если фиксированы, лучше заменить на max-width/max-height */
+    }
+
+    .coaches-label {
+        font-size: 0.9rem;
+        /* Уменьшаем размер шрифта */
+        margin-top: 10px;
+        /* Уменьшаем отступ сверху */
+        margin-bottom: 5px;
+        /* Уменьшаем отступ снизу */
+    }
+
+    .coaches-title {
+        font-size: 1.4rem;
+        /* Уменьшаем размер шрифта */
+        margin-top: 5px;
+        /* Уменьшаем отступ сверху */
+        margin-bottom: 10px;
+        /* Уменьшаем отступ снизу */
+    }
+
+    .coaches-progress {
+        margin-top: 10px;
+        /* Уменьшаем отступ сверху */
+        /* Высоту и ширину фиксированную лучше избегать */
+    }
+
+
 }
 
 
-/* ===== Очень маленькие экраны (до 480px) ===== */
+/* ===== АДАПТИВ: до 480px — iPhone SE ===== */
 @media (max-width: 480px) {
+
+    .stat-item {
+        padding: 5px;
+    }
+
+    .stat-item h3 {
+        font-size: 30px;
+    }
+
+    .stat-item p {
+        font-size: 10px;
+    }
+
+    .image__item img {
+        height: 200px;
+        /* ← ещё уменьшаем */
+    }
+
+    .text__item {
+        padding: 15px;
+    }
+
+    .training__label {
+        font-size: 14px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .read__more {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+
+    .points__traning {
+        transform: scale(1.2);
+        width: 40px;
+        height: 40px;
+    }
+
+    .svg__container img {
+        transform: scale(0.35);
+    }
+
+    .image__block {
+        height: 300px;
+        /* ← ещё уменьшаем высоту */
+        width: 100%;
+    }
+
+    .effect__image .overlay,
+    .content__overlay {
+        height: 300px;
+        /* ← та же высота */
+        width: 100%;
+    }
+
+    /* ===== ТЕКСТ ===== */
+    .text__below__svg {
+        font-size: 16px;
+        /* ← уменьшаем шрифт */
+        line-height: 1.3;
+    }
+
+    .text__below__svg p {
+        margin: 0;
+    }
+
+    .svg__container {
+        margin-bottom: 20px;
+        /* ← уменьшаем отступ */
+    }
+
+    .line__boxing {
+        width: 60px;
+        /* ← уменьшаем длину линии */
+        height: 2px;
+        /* ← уменьшаем толщину */
+        margin-bottom: 30px;
+        /* ← уменьшаем отступ */
+    }
+
+    .additional__text {
+        font-size: 14px;
+        /* ← уменьшаем шрифт */
+        margin-bottom: 5px;
+        /* ← чуть отступаем */
+    }
+
+    .name_author {
+        font-size: 20px;
+        /* ← уменьшаем шрифт */
+    }
+
+    /* ===== ПАТЕНТ ===== */
+    .potent {
+        width: 60px;
+    }
+
+
+    .tab {
+        font-size: 25px;
+    }
+
+    .coaches-card {
+        width: 100%;
+        /* Карточки в 1 колонку */
+    }
+
+    .coaches-watermark {
+        font-size: 150px;
+        /* Ещё больше уменьшаем */
+    }
+
+    .coaches-points {
+        width: 350px;
+        /* Ещё больше уменьшаем */
+        height: 350px;
+    }
+
+    /* Дальнейшее уменьшение шрифтов и отступов */
+    .coaches-heading {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .coaches-subheading {
+        font-size: 0.8rem;
+    }
+
+    .coaches-label {
+        font-size: 0.8rem;
+    }
+
+    .coaches-title {
+        font-size: 1.2rem;
+    }
+
+    
+
+
+    /* ===== ФУТЕР ===== */
     .footer__container {
         padding-top: 40px;
         padding-bottom: 60px;
@@ -2681,10 +3184,7 @@
         width: 120px;
     }
 
-    .cards {
-        padding: 40px 0;
-    }
-
+    /* ===== КАРТОЧКИ ===== */
     .card {
         max-width: 100%;
     }
@@ -2713,6 +3213,7 @@
         padding-bottom: 40px;
     }
 
+    /* ===== БЛОГ ===== */
     .latest-blog {
         padding: 60px 16px;
     }
@@ -2753,9 +3254,97 @@
     .card-date {
         font-size: 14px;
     }
+
+    .text-within {
+        display: none;
+    }
+
+    .main__title__text {
+        display: none;
+    }
+
+    .img__intro {
+        display: none;
+    }
+
+    .fitness__wrapper {
+        margin-top: 0px;
+    }
+
+    .content-container {
+        font-size: 16px;
+        padding-left: 0px;
+    }
+
+
+    .timetable__header>div {
+        font-size: 5px;
+    }
+
+    .timetable__time__slot {
+        font-size: 5px;
+    }
+
+    .timetable__time__slot,
+    .timetable__class__cell {
+        padding: 0px;
+        font-size: 5px;
+    }
+
+    .timetable__class__cell span {
+        font-size: 4px;
+    }
 }
 
+/* ===== АДАПТИВ: до 320px — iPhone 5 ===== */
 @media (max-width: 320px) {
+
+
+    .image__item img {
+        height: 150px;
+        /* ← минимальная высота */
+    }
+
+    .text__item {
+        padding: 10px;
+    }
+
+    .training__label {
+        font-size: 12px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .read__more {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+
+    .points__traning {
+        transform: scale(1.0);
+        width: 30px;
+        height: 30px;
+    }
+
+
+    .content-container {
+        font-size: 16px;
+        padding-left: 0px;
+    }
+
+    .content .text {
+        font-size: 16px;
+
+    }
+
+    /* ===== КАРТОЧКИ ===== */
     .cards__text {
         padding: 24px 16px 20px 24px;
     }
@@ -2769,8 +3358,7 @@
         height: 16px;
     }
 
-
-
+    /* ===== БЛОГ ===== */
     .latest-blog {
         padding: 40px 12px;
     }
@@ -2807,8 +3395,6 @@
     .card-date {
         font-size: 12px;
     }
-
-
 }
 
 /* ===== ОСНОВНЫЕ СТИЛИ ===== */
@@ -2816,7 +3402,6 @@
     position: relative;
     overflow: hidden;
     padding-bottom: clamp(20px, 4vw, 40px);
-    /* ← адаптивный отступ */
 }
 
 .programs-media img {
@@ -2826,66 +3411,3 @@
     object-fit: cover;
     transition: transform 0.3s;
 }
-
-/* ===== МОБИЛЬНЫЕ ===== */
-@media (max-width: 808px) {
-    .programs-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-    }
-
-    .programs-card {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
-        margin-right: 0;
-        /* ← сбрасываем margin */
-    }
-
-    .programs-title {
-        font-size: 32px;
-    }
-
-    .programs-label {
-        font-size: 16px;
-    }
-
-    .programs-media-wrapper {
-        padding-bottom: 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    .programs-grid {
-        gap: 30px;
-    }
-
-    .programs-card {
-        max-width: 100%;
-    }
-
-    .programs-title {
-        font-size: 28px;
-    }
-
-    .programs-label {
-        font-size: 14px;
-    }
-
-    .programs-media-wrapper {
-        padding-bottom: 20px;
-    }
-}
-
-
-
-
-/* Картинка с текстом скопировать,
-протеин убрать падинги, 
-виды тренировок сгруппировать, 
-интро картинка скопировать, 
-чего нибудь придумать с табами, 
-чего нибудь придумать с карточками с ховером, 
-вторые табы изменить падинг вниз, картинки с твиттера скопировать,
-блок - размеры */
