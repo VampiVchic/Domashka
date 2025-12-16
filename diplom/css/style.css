@@ -1992,7 +1992,7 @@
 .arrow__placeholder {
     width: 20px;
     height: 20px;
-    background: url('/img/svg/arrow.svg') center no-repeat;
+    background: url('../img/svg/arrow.svg') center no-repeat;
     background-size: contain;
     z-index: 2;
     transition: transform 0.3s ease;
@@ -3527,3 +3527,4 @@
     transition: transform 0.3s;
 
 }
+
