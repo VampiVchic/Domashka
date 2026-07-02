@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vampivchic — Веб-разработчик</title>
+<style>
+:root {
+    --bg: #0a0a0f;
+    --bg-2: #12121a;
+    --primary: #c8102e;
+    --primary-dark: #8b0000;
+    --accent: #ff3355;
+    --text: #e8e8e8;
+    --text-dim: #a0a0a0;
+    --card: #1a1a24;
+    --border: #2a2a35;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+#batCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+.bg-animation {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -2;
+    background: radial-gradient(circle at 20% 30%, rgba(200,16,46,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139,0,0,0.1) 0%, transparent 50%);
+    animation: bgMove 15s ease-in-out infinite;
+}
+@keyframes bgMove {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
+}
+nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    letter-spacing: 2px;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; left: 0;
+    width: 0; height: 2px;
+    background: var(--primary);
+    transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    animation: fadeInUp 1s ease;
+}
+.hero .subtitle {
+    font-size: 1.5rem;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+    animation: fadeInUp 1s ease 0.3s backwards;
+}
+.hero .cta {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s;
+    animation: fadeInUp 1s ease 0.6s backwards;
+    box-shadow: 0 5px 20px rgba(200,16,46,0.3);
+}
+.hero .cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(200,16,46,0.5);
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: var(--primary);
+    margin: 1rem auto 0;
+}
+.about-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+.about-photo {
+    position: sticky;
+    top: 100px;
+}
+.about-photo img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center 20%;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(200,16,46,0.3);
+    border: 3px solid var(--border);
+    transition: all 0.3s;
+    background: var(--card);
+}
+.about-photo img:hover {
+    transform: scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 0 15px 50px rgba(200,16,46,0.5);
+}
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.about-text p {
+    margin-bottom: 1rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+}
+.stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+.stat-card {
+    background: var(--card);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
+}
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+.stat-card .num {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+.stat-card .label {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+.skill-card {
+    background: var(--card);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+}
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(200,16,46,0.2);
+}
+.skill-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.skill-card h3 { 
+    margin-bottom: 0.5rem; 
+    color: var(--primary);
+}
+.skill-card p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.service-card {
+    background: linear-gradient(135deg, var(--card), var(--bg-2));
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(200,16,46,0.15);
+}
+.service-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+.service-card p {
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+}
+.service-card .badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: rgba(200,16,46,0.2);
+    color: var(--accent);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.process-step {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    position: relative;
+}
+.process-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary);
+    opacity: 0.3;
+    margin-bottom: 1rem;
+}
+.process-step h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+.process-step p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+.contacts { text-align: center; }
+.contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+.contact-link:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(200,16,46,0.2);
+}
+.contact-icon { font-size: 1.8rem; }
+.contact-info {
+    text-align: left;
+}
+.contact-info .label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+.contact-info .value {
+    font-weight: 500;
+    color: var(--text);
+}
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+}
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+    .about-photo {
+        position: relative;
+        top: 0;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    section { padding: 3rem 1rem; }
+    .contact-links { grid-template-columns: 1fr; }
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
+</head>
+<body>
+<canvas id="batCanvas"></canvas>
+<div class="bg-animation"></div>
+
+<nav>
+    <div class="logo">🦇 VAMPIVCHIC</div>
+    <ul class="nav-links">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#skills">Навыки</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#process">Процесс</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+    </ul>
+</nav>
+
+<section class="hero" id="home">
+    <h1>Vampivchic</h1>
+    <p class="subtitle">Веб-разработчик · WordPress · Решение технических задач</p>
+    <a href="#contacts" class="cta">Связаться со мной</a>
+</section>
+
+<section id="about" class="fade-in">
+    <h2 class="section-title">Обо мне</h2>
+    <div class="about-container">
+        <div class="about-photo">
+            <img src="hoto.jpg" alt="Артём — Vampivchic">
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Привет! Я Артём — веб-разработчик, который не спит ночью, чтобы ваш сайт работал идеально днём. WordPress, вёрстка и решение технических задач — моя стихия.</p>
+                <p>С детства увлекаюсь компьютерами: от сборки и ремонта ПК до настройки ПО. Люблю помогать людям решать их технические проблемы.</p>
+                <p>Постоянно учусь новому в веб-разработке: HTML, CSS, JavaScript. Делаю сайты аккуратно и с душой.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-card"><div class="num">15+</div><div class="label">лет с ПК</div></div>
+                <div class="stat-card"><div class="num">∞</div><div class="label">желание учиться</div></div>
+                <div class="stat-card"><div class="num">24/7</div><div class="label">на связи</div></div>
+                <div class="stat-card"><div class="num">100%</div><div class="label">отдача</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="fade-in">
+    <h2 class="section-title">Навыки</h2>
+    <div class="skills-grid">
+        <div class="skill-card">
+            <div class="skill-icon">⚔️</div>
+            <h3>Отладка кода</h3>
+            <p>Разберусь с вашим кодом как воин побеждает дракона — найду и устраню все проблемы</p>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">🛡️</div>
+            <h3>Исцеление сайтов</h3>
+            <p>Восстановлю даже самый повреждённый сайт и верну его к жизни</p>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">🏗️</div>
+            <h3>Архитектор цифровых миров</h3>
+            <p>Превращу ваши идеи в работающие сайты с чистой структурой</p>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">🐛</div>
+            <h3>Дрессировщик багов</h3>
+            <p>Найду все ошибки и заставлю их работать на вас, а не против</p>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">🎯</div>
+            <h3>Pixel-perfect вёрстка</h3>
+            <p>Каждый пиксель на своём месте — точное соответствие макету</p>
+        </div>
+        <div class="skill-card">
+            <div class="skill-icon">🚀</div>
+            <h3>Производительность</h3>
+            <p>Ускорю ваш сайт до максимума — быстрая загрузка и отзывчивость</p>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="fade-in">
+    <h2 class="section-title">Услуги</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>🎨 Сайт-визитка</h3>
+            <p>Простой и стильный одностраничник для личного бренда или малого бизнеса. Идеально для быстрого старта.</p>
+            <span class="badge">Популярное</span>
+        </div>
+        <div class="service-card">
+            <h3>🚀 Landing Page</h3>
+            <p>Продающая страница с акцентом на конверсию. Продуманная структура и красивый дизайн для максимальных результатов.</p>
+        </div>
+        <div class="service-card">
+            <h3>🛠️ WordPress сайт</h3>
+            <p>Создание сайтов на WordPress с настройкой тем и плагинов. Удобное управление контентом для вас.</p>
+        </div>
+        <div class="service-card">
+            <h3>🔧 Ремонт сайта</h3>
+            <p>Восстановление сломанных сайтов, исправление ошибок, обновление устаревших компонентов. Верну ваш сайт к жизни.</p>
+            <span class="badge">Срочная помощь</span>
+        </div>
+        <div class="service-card">
+            <h3>📈 SEO-оптимизация</h3>
+            <p>Базовая оптимизация для поисковых систем. Ваш сайт будут находить потенциальные клиенты.</p>
+        </div>
+        <div class="service-card">
+            <h3>⚡ Доработка сайтов</h3>
+            <p>Добавление нового функционала, изменение дизайна, интеграция сервисов. Улучшу ваш существующий сайт.</p>
+        </div>
+    </div>
+</section>
+
+<section id="process" class="fade-in">
+    <h2 class="section-title">Процесс работы</h2>
+    <p style="text-align: center; color: var(--text-dim); margin-bottom: 2rem;">Простой и прозрачный процесс — вы всегда знаете, что происходит</p>
+    <div class="process-grid">
+        <div class="process-step">
+            <div class="process-number">01</div>
+            <h3>Обсуждение</h3>
+            <p>Узнаю ваши цели и задачи, предлагаю оптимальное решение</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">02</div>
+            <h3>Разработка</h3>
+            <p>Создаю сайт с учётом всех ваших пожеланий и требований</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">03</div>
+            <h3>Тестирование</h3>
+            <p>Проверяю работу на всех устройствах и исправляю недочёты</p>
+        </div>
+        <div class="process-step">
+            <div class="process-number">04</div>
+            <h3>Запуск</h3>
+            <p>Размещаю сайт в интернете и передаю все доступы вам</p>
+        </div>
+    </div>
+</section>
+
+<section id="contacts" class="contacts fade-in">
+    <h2 class="section-title">Контакты</h2>
+    <p style="color: var(--text-dim);">Готов обсудить ваш проект — выбирайте удобный способ связи!</p>
+    <div class="contact-links">
+        <a href="https://t.me/Vampivchic" target="_blank" class="contact-link">
+            <span class="contact-icon">✈️</span>
+            <div class="contact-info">
+                <div class="label">Telegram</div>
+                <div class="value">@Vampivchic</div>
+            </div>
+        </a>
+        <a href="https://wa.me/79009611250" target="_blank" class="contact-link">
+            <span class="contact-icon">💬</span>
+            <div class="contact-info">
+                <div class="label">WhatsApp</div>
+                <div class="value">+7 (900) 961-12-50</div>
+            </div>
+        </a>
+        <a href="mailto:panin5156@gmail.com" class="contact-link">
+            <span class="contact-icon">📧</span>
+            <div class="contact-info">
+                <div class="label">Email</div>
+                <div class="value">panin5156@gmail.com</div>
+            </div>
+        </a>
+        <a href="https://vk.com/vampivchic" target="_blank" class="contact-link">
+            <span class="contact-icon">🔵</span>
+            <div class="contact-info">
+                <div class="label">ВКонтакте</div>
+                <div class="value">vk.com/vampivchic</div>
+            </div>
+        </a>
+        <a href="tel:+79009611250" class="contact-link">
+            <span class="contact-icon">📱</span>
+            <div class="contact-info">
+                <div class="label">Телефон</div>
+                <div class="value">+7 (900) 961-12-50</div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Vampivchic · Сделано с 🦇 и любовью к коду</p>
+</footer>
+
+<script>
+// Canvas для летучих мышей
+const canvas = document.getElementById('batCanvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+let mouseX = canvas.width / 2;
+let mouseY = canvas.height / 2;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+class Bat {
+    constructor() {
+        this.reset();
+    }
+
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 8 + 4;
+        this.speedX = (Math.random() - 0.5) * 2;
+        this.speedY = (Math.random() - 0.5) * 2;
+        this.wingAngle = 0;
+        this.wingSpeed = Math.random() * 0.2 + 0.1;
+        this.opacity = Math.random() * 0.5 + 0.3;
+    }
+
+    update() {
+        const dx = mouseX - this.x;
+        const dy = mouseY - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        const fearDistance = 150;
+        if (distance < fearDistance) {
+            const force = (fearDistance - distance) / fearDistance;
+            this.speedX -= (dx / distance) * force * 0.5;
+            this.speedY -= (dy / distance) * force * 0.5;
+        }
+        
+        this.speedX += (Math.random() - 0.5) * 0.3;
+        this.speedY += (Math.random() - 0.5) * 0.3;
+        
+        const maxSpeed = 2;
+        const speed = Math.sqrt(this.speedX * this.speedX + this.speedY * this.speedY);
+        if (speed > maxSpeed) {
+            this.speedX = (this.speedX / speed) * maxSpeed;
+            this.speedY = (this.speedY / speed) * maxSpeed;
+        }
+        
+        this.x += this.speedX;
+        this.y += this.speedY;
+        
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        
+        if (this.x < 0) this.x = 0;
+        if (this.x > canvas.width) this.x = canvas.width;
+        if (this.y < 0) this.y = 0;
+        if (this.y > canvas.height) this.y = canvas.height;
+        
+        this.wingAngle += this.wingSpeed;
+    }
+
+    draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        
+        const angle = Math.atan2(this.speedY, this.speedX);
+        ctx.rotate(angle + Math.PI / 2);
+        
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = '#1a1a2e';
+        ctx.strokeStyle = '#c8102e';
+        ctx.lineWidth = 0.5;
+        
+        ctx.beginPath();
+        ctx.ellipse(0, 0, this.size * 0.3, this.size * 0.5, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        
+        const wingSpan = this.size * 1.5;
+        const wingFlap = Math.sin(this.wingAngle) * 0.3;
+        
+        ctx.beginPath();
+        ctx.moveTo(0, -this.size * 0.3);
+        ctx.quadraticCurveTo(
+            -wingSpan, -this.size * 0.5 + wingFlap * this.size,
+            -wingSpan * 0.8, this.size * 0.3
+        );
+        ctx.quadraticCurveTo(-this.size * 0.3, this.size * 0.2, 0, this.size * 0.3);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(0, -this.size * 0.3);
+        ctx.quadraticCurveTo(
+            wingSpan, -this.size * 0.5 - wingFlap * this.size,
+            wingSpan * 0.8, this.size * 0.3
+        );
+        ctx.quadraticCurveTo(this.size * 0.3, this.size * 0.2, 0, this.size * 0.3);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        ctx.restore();
+    }
+}
+
+const bats = [];
+const batCount = 20;
+
+for (let i = 0; i < batCount; i++) {
+    bats.push(new Bat());
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    bats.forEach(bat => {
+        bat.update();
+        bat.draw();
+    });
+    
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.boxShadow = window.pageYOffset > 100 ? '0 5px 20px rgba(0,0,0,0.5)' : 'none';
+});
+</script>
+</body>
+</html>
