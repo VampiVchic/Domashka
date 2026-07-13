@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СтройМаркет — Стройматериалы по всей России</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Шапка -->
+<header class="header">
+    <div class="container header__inner">
+        <a href="index.html" class="logo">🏗️ <span>СтройМаркет</span></a>
+        <nav class="nav">
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="products.html">Товары</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Блок 1: Hero -->
+<section class="hero">
+    <div class="container hero__inner">
+        <h1 class="hero__title">СтройМаркет</h1>
+        <p class="hero__slogan">Качественные стройматериалы — от фундамента до крыши</p>
+        <button class="btn btn--primary" data-modal="consult">Получить консультацию</button>
+    </div>
+</section>
+
+<!-- Блок 2: Преимущества -->
+<section class="advantages">
+    <div class="container">
+        <h2 class="section-title">Почему выбирают нас</h2>
+        <div class="advantages__grid">
+            <div class="advantage-card">
+                <div class="advantage-card__icon">🚚</div>
+                <h3>Доставка по всей России</h3>
+                <p>Работаем с транспортными компаниями, доставим в любой регион.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-card__icon">💰</div>
+                <h3>Честные цены</h3>
+                <p>Прямые поставки от производителей — без наценок посредников.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-card__icon">✅</div>
+                <h3>Гарантия качества</h3>
+                <p>Все материалы сертифицированы и проходят проверку на складе.</p>
+            </div>
+            <div class="advantage-card">
+                <div class="advantage-card__icon">👷</div>
+                <h3>10+ лет на рынке</h3>
+                <p>Опытная команда, которая знает всё о стройматериалах.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Блок 3: Форма заявки -->
+<section class="form-section" id="contacts">
+    <div class="container">
+        <h2 class="section-title">Оставьте заявку</h2>
+        <p class="section-subtitle">Мы свяжемся с вами в течение 15 минут</p>
+        <form class="form" id="mainForm">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+            <textarea name="message" placeholder="Ваш вопрос или что хотите приобрести" rows="4"></textarea>
+            <button type="submit" class="btn btn--primary">Отправить заявку</button>
+        </form>
+    </div>
+</section>
+
+<!-- Блок 4: Карта -->
+<section class="map-section">
+    <div class="container">
+        <h2 class="section-title">Как нас найти</h2>
+        <div class="map-wrapper">
+            <iframe
+                src="https://yandex.ru/map-widget/v1/?ll=37.6173%2C55.7558&z=12"
+                width="100%" height="450" frameborder="0"
+                allowfullscreen loading="lazy"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer class="footer">
+    <div class="container">
+        <p>© 2025 СтройМаркет. Все права защищены.</p>
+        <p>📞 +7 (999) 123-45-67 &nbsp;|&nbsp; ✉ info@stroymarket.ru</p>
+    </div>
+</footer>
+
+<!-- Модальное окно -->
+<div class="modal" id="modal">
+    <div class="modal__content">
+        <button class="modal__close" id="modalClose">&times;</button>
+        <h3>Получить консультацию</h3>
+        <form class="form" id="modalForm">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+            <textarea name="message" placeholder="Ваш вопрос" rows="3"></textarea>
+            <button type="submit" class="btn btn--primary">Отправить</button>
+        </form>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

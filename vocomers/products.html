@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товары — СтройМаркет</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header__inner">
+        <a href="index.html" class="logo">🏗️ <span>СтройМаркет</span></a>
+        <nav class="nav">
+            <a href="index.html">Главная</a>
+            <a href="services.html">Услуги</a>
+            <a href="products.html">Товары</a>
+            <a href="index.html#contacts">Контакты</a>
+        </nav>
+    </div>
+</header>
+
+<section class="page-hero">
+    <div class="container">
+        <h1>Каталог товаров</h1>
+        <p>Всё для строительства в одном месте</p>
+    </div>
+</section>
+
+<section class="products">
+    <div class="container">
+        <div class="products__grid" id="productsGrid">
+            <!-- Карточки подгружаются из JS -->
+        </div>
+    </div>
+</section>
+
+<!-- Модальное окно заявки -->
+<div class="modal" id="modal">
+    <div class="modal__content">
+        <button class="modal__close" id="modalClose">&times;</button>
+        <h3>Оставить заявку на товар</h3>
+        <p id="modalProduct" style="color:#ff7a00;font-weight:600;margin-bottom:15px;"></p>
+        <form class="form" id="modalForm">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
+            <textarea name="message" placeholder="Комментарий к заказу" rows="3"></textarea>
+            <button type="submit" class="btn btn--primary">Оформить заявку</button>
+        </form>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2025 СтройМаркет. Все права защищены.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
